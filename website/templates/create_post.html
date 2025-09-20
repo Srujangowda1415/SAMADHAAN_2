@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-container">
+    <div class="form-header">
+        <h1>
+            {% if form.instance.pk %}
+            <i class="fas fa-edit"></i> Update Post
+            {% else %}
+            <i class="fas fa-plus-circle"></i> Create a New Post
+            {% endif %}
+        </h1>
+        <p>
+            {% if form.instance.pk %}
+            Make changes to your existing post
+            {% else %}
+            Share your thoughts with the community
+            {% endif %}
+        </p>
+    </div>
+
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="form-group">
+            {{ form.title.label_tag }}
+            {{ form.title }}
+            {{ form.title.errors }}
+            <div class="help-text">Add a clear and descriptive title</div>
+        </div>
+
+        <div class="form-group">
+            {{ form.content.label_tag }}
+            {{ form.content }}
+            {{ form.content.errors }}
+            <div class="help-text">Write your content here. You can use Markdown formatting.</div>
+        </div>
+
+        <div class="form-actions">
+            <a href="{% url 'home' %}" class="btn-cancel">Cancel</a>
+            <button type="submit" class="btn-submit">
+                {% if form.instance.pk %}
+                <i class="fas fa-save"></i> Update Post
+                {% else %}
+                <i class="fas fa-paper-plane"></i> Create Post
+                {% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .page-container {
+        max-width: 700px;
+        margin: 2rem auto;
+        padding: 2.5rem;
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .form-header h1 {
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .form-header p {
+        color: #6b7280;
+        font-size: 1.1rem;
+        margin: 0;
+    }
+
+    .post-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #374151;
+        font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 1rem 1.25rem;
+        border-radius: 10px;
+        border: 1px solid #d1d5db;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background-color: #f9fafb;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #6366f1;
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+        background-color: #ffffff;
+    }
+
+    .form-group textarea {
+        min-height: 200px;
+        resize: vertical;
+        line-height: 1.6;
+    }
+
+    .help-text {
+        font-size: 0.85rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+    }
+
+    .errorlist {
+        color: #dc2626;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        padding-left: 1.25rem;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        margin-top: 1.5rem;
+    }
+
+    .btn-cancel {
+        padding: 0.9rem 1.5rem;
+        background-color: #f3f4f6;
+        color: #374151;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .btn-cancel:hover {
+        background-color: #e5e7eb;
+        text-decoration: none;
+        color: #374151;
+    }
+
+    .btn-submit {
+        padding: 0.9rem 1.75rem;
+        background-color: #6366f1;
+        color: white;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-submit:hover {
+        background-color: #4f46e5;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+
+    @media (max-width: 768px) {
+        .page-container {
+            margin: 1rem;
+            padding: 1.75rem;
+        }
+
+        .form-header h1 {
+            font-size: 1.75rem;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
