@@ -330,7 +330,44 @@
             margin-bottom: 1rem;
         }
 
-        .like-count {
+        .post-actions {
+    display: flex;
+    justify-content: flex-end; /* aligns button to the right inside card */
+    margin-top: 1rem;
+}
+
+.post-actions form button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.btn-like {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+.btn-like:hover {
+    background-color: #e2e8f0;
+}
+
+.btn-unlike {
+    background-color: #ef4444;
+    color: white;
+}
+
+.btn-unlike:hover {
+    background-color: #dc2626;
+}
+
+        /* .like-count {
             display: flex;
             align-items: center;
             gap: 0.3rem;
@@ -340,9 +377,9 @@
 
         .like-count i {
             color: #ef4444;
-        }
+        } */
 
-        .post-actions {
+        /* .post-actions {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -353,7 +390,7 @@
             display: flex;
             justify-content: center;
             z-index: 10;
-        }
+        } */
 
         .action-button {
             padding: 1rem 2rem;
@@ -701,13 +738,20 @@
                             </div>
                             
                             <p class="post-description">{{ post.content }}</p>
-                            
-                            <div class="post-engagement">
-                                <div class="like-count">
-                                    <i class="fas fa-heart"></i>
-                                    <span>245 Supports</span>
-                                </div>
+
+                            <div class="post-actions">
+                                <form action="{% url 'like_post' post.id %}" method="post">
+                                    {% csrf_token %}
+                                    {% if user in post.likes.all %}
+                                        <button type="submit" class="btn-unlike">❤️ {{ post.total_likes }}</button>
+                                    {% else %}
+                                        <button type="submit" class="btn-like">🤍 {{ post.total_likes }}</button>
+                                    {% endif %}
+                                </form>
                             </div>
+                            
+
+                            
                             
                             <div class="post-meta">
                                 <div class="post-author">

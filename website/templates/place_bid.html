@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Bid - {{ post.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Noto Sans', sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #222831;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(44, 56, 102, 0.08);
+            padding: 32px;
+            width: 100%;
+            max-width: 420px;
+            margin: 20px auto;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #25316D;
+            text-align: center;
+            margin-bottom: 28px;
+            letter-spacing: 0.5px;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        label {
+            font-weight: 600;
+            color: #25316D;
+            font-size: 1rem;
+        }
+        
+        .required::after {
+            content: " *";
+            color: #FFB100;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dfe4ea;
+            border-radius: 8px;
+            font-size: 1rem;
+            min-height: 44px;
+            transition: all 0.3s ease;
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #25316D;
+            box-shadow: 0 0 0 3px rgba(37, 49, 109, 0.15);
+        }
+        
+        input:hover, textarea:hover {
+            border-color: #a4b0be;
+        }
+        
+        .btn-submit {
+            background-color: #FFB100;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(255, 177, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        
+        .btn-submit:hover {
+            background-color: #e69c00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 177, 0, 0.4);
+        }
+        
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+        
+        .error-message {
+            color: #B20000;
+            font-size: 0.85rem;
+            margin-top: 4px;
+            display: none;
+        }
+        
+        .success-message {
+            color: #46B946;
+            font-size: 0.85rem;
+            margin-top: 4px;
+            display: none;
+        }
+        
+        input:invalid:focus, textarea:invalid:focus {
+            border-color: #B20000;
+        }
+        
+        input:invalid:focus + .error-message, 
+        textarea:invalid:focus + .error-message {
+            display: block;
+        }
+        
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 24px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Bid on: {{ post.title }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="amount" class="required">Amount (₹):</label>
+                <input type="number" id="amount" name="amount" step="0.01" required>
+                <div class="error-message">Please enter a valid bid amount</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposal" class="required">Proposal:</label>
+                <textarea id="proposal" name="proposal" required></textarea>
+                <div class="error-message">Please provide your proposal details</div>
+            </div>
+            
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-paper-plane"></i> Submit Bid
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Simple form validation feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const inputs = form.querySelectorAll('input, textarea');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.value.trim() === '' && this.hasAttribute('required')) {
+                        this.style.borderColor = '#B20000';
+                        this.nextElementSibling.style.display = 'block';
+                    } else {
+                        this.style.borderColor = '#dfe4ea';
+                        this.nextElementSibling.style.display = 'none';
+                    }
+                });
+            });
+            
+            form.addEventListener('submit', function(e) {
+                let valid = true;
+                
+                inputs.forEach(input => {
+                    if (input.hasAttribute('required') && input.value.trim() === '') {
+                        input.style.borderColor = '#B20000';
+                        input.nextElementSibling.style.display = 'block';
+                        valid = false;
+                    }
+                });
+                
+                if (!valid) {
+                    e.preventDefault();
+                    // Scroll to first error
+                    const firstError = form.querySelector('.error-message[style="display: block"]');
+                    if (firstError) {
+                        firstError.previousElementSibling.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
