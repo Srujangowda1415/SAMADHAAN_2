@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from website import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -12,3 +14,5 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),  # Authentication URLs (login/logout)
     path('home/', views.home, name='home'),                       # Homepage (keep at the end)
 ]
+if settings.DEBUG:  # serve media only in dev
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
