@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'auth.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'auth_learner',
-        'USER': 'auth_learner_user',
-        'PASSWORD': 'mtSaEYGnwINmWsLzR8DYBbvr5P5zb1H2',
-        'HOST': 'dpg-d2qr26odl3ps73b98vq0-a.oregon-postgres.render.com',
-        'PORT': '5432',
+        'NAME': 'postgres',  # database name
+        'USER': 'postgres',  # username
+        'PASSWORD': 'BGhV9EGhoWpfCB78',  # replace with your actual password
+        'HOST': 'db.ypddqynoyjsgnczqexwv.supabase.co',  # host
+        'PORT': '5432',  # default PostgreSQL port
     }
 }
 
