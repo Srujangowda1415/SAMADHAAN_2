@@ -11,210 +11,548 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', 'Noto Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         
         body {
-            background-color: #f8fafc;
-            color: #222831;
-            line-height: 1.6;
-            padding: 20px;
+            background-color: #ffffff;
+            color: #0f1419;
+            line-height: 1.5;
             min-height: 100vh;
+        }
+
+        /* Dashboard Layout */
+        .dashboard-container {
+            display: flex;
+            max-width: 1265px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        /* Left Sidebar */
+        .sidebar-left {
+            width: 275px;
+            padding: 0 12px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #eff3f4;
+        }
+
+        .logo {
+            padding: 12px;
+            margin-bottom: 8px;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #0f1419;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .logo i {
+            color: #4f46e5;
+            font-size: 1.5rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .nav-item {
+            margin-bottom: 4px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px;
+            text-decoration: none;
+            color: #0f1419;
+            border-radius: 50px;
+            transition: background-color 0.2s;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-link:hover {
+            background-color: #f7f9f9;
+        }
+
+        .nav-link.active {
+            font-weight: 700;
+            color: #4f46e5;
+        }
+
+        .nav-link i {
+            font-size: 1.4rem;
+            width: 26px;
+            text-align: center;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin-top: auto;
+            border-radius: 50px;
+            transition: background-color 0.2s;
+            position: absolute;
+            bottom: 20px;
+            width: 90%;
+        }
+
+        .user-profile:hover {
+            background-color: #f7f9f9;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .user-handle {
+            color: #536471;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 275px;
+            border-right: 1px solid #eff3f4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feed-header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 10;
+            padding: 12px 16px;
+            border-bottom: 1px solid #eff3f4;
+        }
+
+        .feed-header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feed-header h1 i {
+            color: #4f46e5;
+        }
+
+        /* Bid Form Container */
+        .bid-form-container {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 40px 20px;
         }
-        
-        .form-container {
+
+        .bid-card {
             background: white;
             border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(44, 56, 102, 0.08);
-            padding: 32px;
+            border: 1px solid #eff3f4;
             width: 100%;
-            max-width: 420px;
-            margin: 20px auto;
+            max-width: 500px;
+            overflow: hidden;
         }
-        
-        h1 {
-            font-size: 1.8rem;
+
+        .bid-header {
+            padding: 20px;
+            border-bottom: 1px solid #eff3f4;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .bid-header h2 {
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #25316D;
-            text-align: center;
-            margin-bottom: 28px;
-            letter-spacing: 0.5px;
+            color: #0f1419;
+            margin-bottom: 8px;
         }
-        
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
+
+        .bid-header p {
+            color: #536471;
+            font-size: 0.95rem;
         }
-        
+
+        .bid-form {
+            padding: 24px;
+        }
+
         .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            margin-bottom: 20px;
         }
-        
-        label {
+
+        .form-group label {
+            display: block;
             font-weight: 600;
-            color: #25316D;
-            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #0f1419;
+            font-size: 0.95rem;
         }
-        
-        .required::after {
-            content: " *";
-            color: #FFB100;
-        }
-        
-        input, textarea {
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #dfe4ea;
+            padding: 12px 16px;
+            border: 1px solid #cfd9de;
             border-radius: 8px;
             font-size: 1rem;
-            min-height: 44px;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
+            background-color: #f7f9f9;
         }
-        
-        textarea {
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-group textarea {
             min-height: 120px;
             resize: vertical;
+            line-height: 1.4;
         }
-        
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #25316D;
-            box-shadow: 0 0 0 3px rgba(37, 49, 109, 0.15);
+
+        .amount-input {
+            position: relative;
         }
-        
-        input:hover, textarea:hover {
-            border-color: #a4b0be;
+
+        .amount-input::before {
+            content: "₹";
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #536471;
+            font-weight: 600;
         }
-        
-        .btn-submit {
-            background-color: #FFB100;
-            color: white;
-            padding: 14px 24px;
+
+        .amount-input input {
+            padding-left: 32px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn-cancel {
+            padding: 12px 24px;
+            background-color: #f7f9f9;
+            color: #0f1419;
+            font-weight: 600;
             border: none;
             border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            box-shadow: 0 2px 8px rgba(255, 177, 0, 0.3);
-            transition: all 0.3s ease;
             cursor: pointer;
-            margin-top: 8px;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
         }
-        
+
+        .btn-cancel:hover {
+            background-color: #eff3f4;
+        }
+
+        .btn-submit {
+            padding: 12px 24px;
+            background-color: #FFB100;
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 2;
+            justify-content: center;
+        }
+
         .btn-submit:hover {
             background-color: #e69c00;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 177, 0, 0.4);
         }
-        
-        .btn-submit:active {
-            transform: translateY(0);
-        }
-        
-        .error-message {
-            color: #B20000;
-            font-size: 0.85rem;
-            margin-top: 4px;
-            display: none;
-        }
-        
-        .success-message {
-            color: #46B946;
-            font-size: 0.85rem;
-            margin-top: 4px;
-            display: none;
-        }
-        
-        input:invalid:focus, textarea:invalid:focus {
-            border-color: #B20000;
-        }
-        
-        input:invalid:focus + .error-message, 
-        textarea:invalid:focus + .error-message {
-            display: block;
-        }
-        
-        @media (max-width: 480px) {
-            .form-container {
-                padding: 24px;
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar-left {
+                width: 88px;
             }
             
-            h1 {
-                font-size: 1.5rem;
+            .nav-link span, .user-info {
+                display: none;
+            }
+            
+            .nav-link {
+                justify-content: center;
+                padding: 12px;
+            }
+            
+            .user-profile {
+                width: 64px;
+                justify-content: center;
+            }
+            
+            .main-content {
+                margin-left: 88px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+            
+            .sidebar-left {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #eff3f4;
+                padding: 8px;
+            }
+            
+            .nav-menu {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 0;
+            }
+            
+            .nav-item {
+                margin-bottom: 0;
+            }
+            
+            .user-profile {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .bid-form-container {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bid-card {
+                border-radius: 12px;
+            }
+            
+            .bid-header {
+                padding: 16px;
+            }
+            
+            .bid-form {
+                padding: 20px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .btn-cancel, .btn-submit {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h1>Bid on: {{ post.title }}</h1>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="amount" class="required">Amount (₹):</label>
-                <input type="number" id="amount" name="amount" step="0.01" required>
-                <div class="error-message">Please enter a valid bid amount</div>
+    <div class="dashboard-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar-left">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <i class="fas fa-handshake"></i>
+                    <span>SAMADHAAN</span>
+                </a>
             </div>
             
-            <div class="form-group">
-                <label for="proposal" class="required">Proposal:</label>
-                <textarea id="proposal" name="proposal" required></textarea>
-                <div class="error-message">Please provide your proposal details</div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="{% url 'home' %}" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'contractor_dashboard' %}" class="nav-link active">
+                        <i class="fas fa-tools"></i>
+                        <span>Contractor</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="user-profile">
+                <div class="user-avatar">
+                    {% if user.is_authenticated %}
+                        {{ user.username|slice:":1"|upper }}
+                    {% else %}
+                        <i class="fas fa-user"></i>
+                    {% endif %}
+                </div>
+                <div class="user-info">
+                    <div class="user-name">
+                        {% if user.is_authenticated %}
+                            {{ user.username }}
+                        {% else %}
+                            Guest
+                        {% endif %}
+                    </div>
+                    <div class="user-handle">
+                        {% if user.is_authenticated %}
+                            @{{ user.username }}
+                        {% else %}
+                            @guest
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="feed-header">
+                <h1>
+                    <i class="fas fa-gavel"></i>
+                    Place Your Bid
+                </h1>
             </div>
             
-            <button type="submit" class="btn-submit">
-                <i class="fas fa-paper-plane"></i> Submit Bid
-            </button>
-        </form>
+            <div class="bid-form-container">
+                <div class="bid-card">
+                    <div class="bid-header">
+                        <h2>Bid on: {{ post.title }}</h2>
+                        <p>Submit your proposal for this project</p>
+                    </div>
+                    
+                    <form method="post" class="bid-form">
+                        {% csrf_token %}
+                        
+                        <div class="form-group">
+                            <label for="amount">Bid Amount (₹)</label>
+                            <div class="amount-input">
+                                <input type="number" id="amount" name="amount" step="0.01" required 
+                                       placeholder="Enter your bid amount">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="proposal">Your Proposal</label>
+                            <textarea id="proposal" name="proposal" required 
+                                      placeholder="Describe your approach, timeline, and why you're the right contractor for this project"></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <a href="{% url 'contractor_dashboard' %}" class="btn-cancel">
+                                <i class="fas fa-arrow-left"></i>
+                                Back to Projects
+                            </a>
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Bid
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Simple form validation feedback
+        // Form validation and enhancement
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form');
-            const inputs = form.querySelectorAll('input, textarea');
+            const amountInput = document.getElementById('amount');
+            const proposalTextarea = document.getElementById('proposal');
+            const submitButton = document.querySelector('.btn-submit');
             
-            inputs.forEach(input => {
-                input.addEventListener('blur', function() {
-                    if (this.value.trim() === '' && this.hasAttribute('required')) {
-                        this.style.borderColor = '#B20000';
-                        this.nextElementSibling.style.display = 'block';
-                    } else {
-                        this.style.borderColor = '#dfe4ea';
-                        this.nextElementSibling.style.display = 'none';
-                    }
-                });
-            });
-            
-            form.addEventListener('submit', function(e) {
-                let valid = true;
-                
-                inputs.forEach(input => {
-                    if (input.hasAttribute('required') && input.value.trim() === '') {
-                        input.style.borderColor = '#B20000';
-                        input.nextElementSibling.style.display = 'block';
-                        valid = false;
-                    }
+            // Add rupee symbol to amount input
+            if (amountInput) {
+                amountInput.addEventListener('focus', function() {
+                    this.parentElement.style.borderColor = '#4f46e5';
                 });
                 
-                if (!valid) {
-                    e.preventDefault();
-                    // Scroll to first error
-                    const firstError = form.querySelector('.error-message[style="display: block"]');
-                    if (firstError) {
-                        firstError.previousElementSibling.scrollIntoView({ 
+                amountInput.addEventListener('blur', function() {
+                    this.parentElement.style.borderColor = '#cfd9de';
+                });
+            }
+            
+            // Character count for proposal (optional enhancement)
+            if (proposalTextarea) {
+                proposalTextarea.addEventListener('input', function() {
+                    // You can add character count functionality here if needed
+                });
+            }
+            
+            // Form submission validation
+            const form = document.querySelector('.bid-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    let isValid = true;
+                    
+                    if (!amountInput.value.trim()) {
+                        amountInput.style.borderColor = '#f91880';
+                        isValid = false;
+                    }
+                    
+                    if (!proposalTextarea.value.trim()) {
+                        proposalTextarea.style.borderColor = '#f91880';
+                        isValid = false;
+                    }
+                    
+                    if (!isValid) {
+                        e.preventDefault();
+                        // Scroll to first error
+                        const firstError = amountInput.value.trim() ? proposalTextarea : amountInput;
+                        firstError.scrollIntoView({ 
                             behavior: 'smooth', 
                             block: 'center'
                         });
                     }
-                }
-            });
+                });
+            }
         });
     </script>
 </body>
