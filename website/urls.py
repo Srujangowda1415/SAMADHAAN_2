@@ -8,6 +8,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index, name='index'),  # Landing page
     path('create/', views.create_post, name='create_post'),  # Create Post page
     path('signup/', views.signup_view, name='signup'),   
     path('delete/<int:post_id>/', views.delete_post, name='delete_post'),
