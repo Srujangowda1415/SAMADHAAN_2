@@ -3,9 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Namaste Nagrik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(-45deg, #e0f7fa, #f3e5f5, #e8f5e8, #fff3e0);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .splash-container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            max-width: 90%;
+        }
+
+        .logo {
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 0.5s;
+        }
+
+        .logo i {
+            font-size: 4rem;
+            color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            color: #1e293b;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .language-text {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            min-height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .language-name {
+            font-size: 1.2rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            min-height: 30px;
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin: 2rem auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            background: #4f46e5;
+            width: 0%;
+            border-radius: 10px;
+            animation: progressFill 15s linear forwards;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        .element-1 {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .element-2 {
+            width: 120px;
+            height: 120px;
+            top: 70%;
+            left: 80%;
+            animation-delay: -5s;
+        }
+
+        .element-3 {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 85%;
+            animation-delay: -10s;
+        }
+
+        .element-4 {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 15%;
+            animation-delay: -7s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .typing-effect {
+            overflow: hidden;
+            border-right: 3px solid #4f46e5;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 1.5s steps(20, end), blink 0.75s step-end infinite;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .language-text {
+                font-size: 2.5rem;
+                min-height: 100px;
+            }
+
+            .logo h1 {
+                font-size: 2rem;
+            }
+
+            .logo i {
+                font-size: 3rem;
+            }
+
+            .progress-bar {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .language-text {
+                font-size: 2rem;
+                min-height: 80px;
+            }
+
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+
+            .logo i {
+                font-size: 2.5rem;
+            }
+
+            .progress-bar {
+                width: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>index page</h1>
+    <div class="floating-elements">
+        <div class="floating-element element-1"></div>
+        <div class="floating-element element-2"></div>
+        <div class="floating-element element-3"></div>
+        <div class="floating-element element-4"></div>
+    </div>
+
+    <div class="splash-container">
+        <div class="logo">
+            <i class="fas fa-hands"></i>
+            <h1>SAMADHAAN</h1>
+        </div>
+        
+        <div class="language-text" id="languageText">
+            <!-- Text will be dynamically inserted here -->
+        </div>
+        
+        <div class="language-name" id="languageName">
+            <!-- Language name will be dynamically inserted here -->
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        // Languages data
+        const languages = [
+            { text: "नमस्ते नागरिक", name: "Hindi" },
+            { text: "ನಮಸ್ತೆ ನಾಗರಿಕ", name: "Kannada" },
+            { text: "வணக்கம் நகரவாசி", name: "Tamil" },
+            { text: "నమస్తే నగరిక", name: "Telugu" },
+            { text: "নমস্কার নাগরিক", name: "Bengali" },
+            { text: "નમસ્તે નાગરિક", name: "Gujarati" },
+            { text: "Namaste Nagrik", name: "English" },
+            { text: "ਨਮਸਤੇ ਨਾਗਰਿਕ", name: "Punjabi" },
+            { text: "नमस्कार नागरिक", name: "Marathi" },
+            { text: "ନମସ୍ତେ ନାଗରିକ", name: "Odia" }
+        ];
+
+        let currentIndex = 0;
+        const languageTextElement = document.getElementById('languageText');
+        const languageNameElement = document.getElementById('languageName');
+        
+        // Function to display text with typing effect
+        function displayLanguage() {
+            if (currentIndex >= languages.length) {
+                // Redirect to home page after all languages are shown
+                window.location.href = '/home/';
+                return;
+            }
+            
+            const currentLanguage = languages[currentIndex];
+            
+            // Reset and apply typing effect
+            languageTextElement.innerHTML = '';
+            languageTextElement.style.borderRight = '3px solid #4f46e5';
+            languageTextElement.classList.add('typing-effect');
+            
+            // Type out the text character by character
+            let i = 0;
+            const typingInterval = setInterval(() => {
+                if (i < currentLanguage.text.length) {
+                    languageTextElement.innerHTML += currentLanguage.text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                    languageTextElement.classList.remove('typing-effect');
+                    languageTextElement.style.borderRight = 'none';
+                    
+                    // Update language name
+                    languageNameElement.textContent = currentLanguage.name;
+                    
+                    // Move to next language after delay
+                    setTimeout(() => {
+                        currentIndex++;
+                        displayLanguage();
+                    }, 1500); // Wait 1.5 seconds before showing next language
+                }
+            }, 100); // Typing speed
+        }
+        
+        // Start the animation when page loads
+        window.onload = function() {
+            setTimeout(() => {
+                displayLanguage();
+            }, 1000); // Initial delay before starting
+        };
+    </script>
 </body>
 </html>
