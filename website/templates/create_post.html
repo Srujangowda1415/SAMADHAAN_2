@@ -6,578 +6,624 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAMADHAAN - हर समस्या का समाधान</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Global Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Nunito', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: #f0f9ff;
-            color: #334155;
-            line-height: 1.6;
+            background-color: #ffffff;
+            color: #0f1419;
+            line-height: 1.5;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
-        /* Modern Navbar */
-        nav {
+        /* Dashboard Layout */
+        .dashboard-container {
             display: flex;
-            justify-content: space-between;
+            max-width: 1265px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        /* Left Sidebar */
+        .sidebar-left {
+            width: 275px;
+            padding: 0 12px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #eff3f4;
+        }
+
+        .logo {
+            padding: 12px;
+            margin-bottom: 8px;
+        }
+
+        .logo a {
+            display: flex;
             align-items: center;
-            padding: 0.8rem 2.5rem;
-            background: #ffffff;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #4f46e5;
+            gap: 10px;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            color: #0f1419;
+            font-weight: 700;
+            font-size: 1.3rem;
         }
 
-        nav .logo i {
+        .logo i {
             color: #4f46e5;
+            font-size: 1.5rem;
         }
 
-        nav .nav-links {
+        .nav-menu {
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .nav-item {
+            margin-bottom: 4px;
+        }
+
+        .nav-link {
             display: flex;
-            gap: 1.2rem;
             align-items: center;
-        }
-
-        nav .nav-links a {
-            color: #64748b;
+            gap: 16px;
+            padding: 12px;
             text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            padding: 0.6rem 1rem;
+            color: #0f1419;
             border-radius: 50px;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: background-color 0.2s;
+            font-weight: 500;
+            font-size: 1.1rem;
         }
 
-        nav .nav-links a:hover {
+        .nav-link:hover {
+            background-color: #f7f9f9;
+        }
+
+        .nav-link.active {
+            font-weight: 700;
             color: #4f46e5;
-            background-color: #f1f5f9;
         }
 
-        nav .nav-links a.cta-button {
+        .nav-link i {
+            font-size: 1.4rem;
+            width: 26px;
+            text-align: center;
+        }
+
+        .post-button {
             background-color: #4f46e5;
             color: white;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-        }
-
-        nav .nav-links a.cta-button:hover {
-            background-color: #4338ca;
-            transform: translateY(-2px);
-        }
-
-        .nav-username {
-            color: #475569;
-            font-weight: 500;
-            margin-right: 0.5rem;
-            padding: 0.6rem 1rem;
-            border-radius: 50px;
-            background: #f1f5f9;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        nav .nav-links form {
-            display: flex;
-            align-items: center;
-            margin: 0;
-        }
-
-        nav .nav-links form button {
-            background: none;
             border: none;
-            color: #64748b;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 0.6rem 1rem;
             border-radius: 50px;
-            transition: all 0.3s ease;
+            padding: 16px 0;
+            width: 90%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .post-button:hover {
+            background-color: #4338ca;
+        }
+
+        .user-profile {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 12px;
+            padding: 12px;
+            margin-top: auto;
+            border-radius: 50px;
+            transition: background-color 0.2s;
+            position: absolute;
+            bottom: 20px;
+            width: 90%;
         }
 
-        nav .nav-links form button:hover {
-            color: #4f46e5;
-            background-color: #f1f5f9;
+        .user-profile:hover {
+            background-color: #f7f9f9;
         }
 
-        nav .nav-links form button i {
-            font-size: 0.9rem;
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
         }
 
-        /* Page content container */
-        .content {
-            padding: 2rem 1.5rem;
-            max-width: 800px;
-            margin: 0 auto;
-            width: 100%;
+        .user-info {
             flex: 1;
         }
 
-        /* Footer */
-        .footer {
-            background: #ffffff;
-            color: #64748b;
-            text-align: center;
-            padding: 1.5rem;
-            margin-top: auto;
-            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.03);
+        .user-name {
+            font-weight: 700;
+            font-size: 0.95rem;
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .user-handle {
+            color: #536471;
+            font-size: 0.9rem;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 0.5rem;
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 275px;
+            border-right: 1px solid #eff3f4;
+            min-height: 100vh;
         }
 
-        .footer-links a {
-            color: #64748b;
-            text-decoration: none;
-            transition: color 0.3s;
+        .feed-header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 10;
+            padding: 12px 16px;
+            border-bottom: 1px solid #eff3f4;
         }
 
-        .footer-links a:hover {
-            color: #4f46e5;
+        .feed-header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
         }
 
-        /* Form Styles */
-        .page-container {
-            background-color: #ffffff;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            margin: 1rem 0;
+        /* Create Post Form */
+        .create-post-form {
+            padding: 16px;
+            border-bottom: 1px solid #eff3f4;
         }
 
         .form-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 20px;
         }
 
-        .form-header h1 {
-            color: #1e293b;
-            margin-bottom: 0.75rem;
-            font-size: 2rem;
+        .form-header h2 {
+            font-size: 1.5rem;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
+            color: #0f1419;
+            margin-bottom: 8px;
         }
 
         .form-header p {
-            color: #64748b;
-            font-size: 1.1rem;
-            font-weight: 400;
-            margin: 0;
+            color: #536471;
+            font-size: 0.95rem;
         }
 
-        .post-form {
+        .post-composer {
             display: flex;
-            flex-direction: column;
-            gap: 1.75rem;
+            gap: 12px;
+        }
+
+        .post-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .post-input-area {
+            flex: 1;
         }
 
         .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            margin-bottom: 16px;
         }
 
         .form-group label {
+            display: block;
             font-weight: 600;
-            color: #374151;
-            font-size: 1rem;
+            margin-bottom: 6px;
+            color: #0f1419;
         }
 
         .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-group textarea {
             width: 100%;
-            padding: 1rem 1.25rem;
-            border-radius: 12px;
-            border: 2px solid #e2e8f0;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background-color: #f8fafc;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: #818cf8;
+            border: none;
+            resize: none;
+            font-size: 1.1rem;
             outline: none;
-            box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15);
-            background-color: #ffffff;
+            padding: 12px 0;
         }
 
         .form-group textarea {
-            min-height: 200px;
-            resize: vertical;
-            line-height: 1.6;
+            min-height: 120px;
+            line-height: 1.4;
         }
 
-        .help-text {
-            font-size: 0.85rem;
-            color: #64748b;
-            margin-top: 0.25rem;
-        }
-
-        .errorlist {
-            color: #ef4444;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            padding-left: 1.25rem;
-            list-style-type: none;
-        }
-
-        .errorlist li {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .errorlist li:before {
-            content: "⚠️";
-        }
-
-        .form-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-            margin-top: 1.5rem;
-        }
-
-        .btn-cancel {
-            padding: 1rem 1.75rem;
-            background-color: #f1f5f9;
-            color: #475569;
+        .form-group input {
+            font-size: 1.3rem;
             font-weight: 600;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            border-bottom: 1px solid #eff3f4;
+            margin-bottom: 12px;
         }
 
-        .btn-cancel:hover {
-            background-color: #e2e8f0;
-            text-decoration: none;
-            color: #374151;
-            transform: translateY(-2px);
+        .image-upload {
+            margin-top: 16px;
         }
 
-        .btn-submit {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
-            color: white;
-            font-weight: 600;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(99, 102, 241, 0.35);
-        }
-
-        /* Image Preview */
         .image-preview {
-            margin-top: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            margin-top: 12px;
         }
 
         .image-preview img {
             max-width: 100%;
             max-height: 300px;
-            border-radius: 12px;
-            border: 2px dashed #cbd5e1;
-            padding: 0.5rem;
+            border-radius: 16px;
+            border: 1px solid #eff3f4;
         }
 
-        /* Form Categories */
-        .category-tags {
+        .post-actions {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 0.5rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #eff3f4;
         }
 
-        .category-tag {
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
+        .action-icons {
+            display: flex;
+            gap: 16px;
+            color: #4f46e5;
+        }
+
+        .action-icons label {
             cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+            margin-bottom: 0;
         }
 
-        .category-tag:hover {
-            transform: translateY(-2px);
+        .action-icons label:hover {
+            background-color: #e0f2fe;
         }
 
-        .category-infrastructure {
-            background-color: #dbeafe;
-            color: #1e40af;
+        .tweet-button {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 1rem;
         }
 
-        .category-environment {
-            background-color: #dcfce7;
-            color: #166534;
+        .tweet-button:hover {
+            background-color: #4338ca;
         }
 
-        .category-safety {
-            background-color: #fef3c7;
-            color: #92400e;
+        .tweet-button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
         }
 
-        .category-other {
-            background-color: #e9d5ff;
-            color: #7e22ce;
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .btn-cancel {
+            padding: 10px 20px;
+            background-color: #f7f9f9;
+            color: #0f1419;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-cancel:hover {
+            background-color: #eff3f4;
+        }
+
+        /* Error Styling */
+        .errorlist {
+            color: #f91880;
+            font-size: 0.9rem;
+            margin-top: 4px;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .errorlist li {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .errorlist li:before {
+            content: "⚠";
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            nav {
-                padding: 0.8rem 1.5rem;
+        @media (max-width: 1024px) {
+            .sidebar-left {
+                width: 88px;
             }
-
-            nav .logo {
-                font-size: 1.5rem;
-            }
-
-            nav .nav-links {
-                gap: 0.8rem;
-            }
-
-            .nav-username {
+            
+            .nav-link span, .user-info, .post-button span {
                 display: none;
             }
-
-            .page-container {
-                padding: 1.75rem;
-                margin: 0.5rem;
-            }
-
-            .form-header h1 {
-                font-size: 1.75rem;
-            }
-
-            .form-actions {
-                flex-direction: column;
-            }
-
-            .btn-cancel, .btn-submit {
-                width: 100%;
+            
+            .nav-link {
                 justify-content: center;
+                padding: 12px;
+            }
+            
+            .post-button {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+            }
+            
+            .post-button i {
+                margin: 0;
+            }
+            
+            .user-profile {
+                width: 64px;
+                justify-content: center;
+            }
+            
+            .main-content {
+                margin-left: 88px;
             }
         }
 
-        @media (max-width: 576px) {
-            nav {
+        @media (max-width: 768px) {
+            .dashboard-container {
                 flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
             }
+            
+            .sidebar-left {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #eff3f4;
+                padding: 8px;
+            }
+            
+            .nav-menu {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 0;
+            }
+            
+            .nav-item {
+                margin-bottom: 0;
+            }
+            
+            .post-button, .user-profile {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .post-composer {
+                flex-direction: column;
+            }
+            
+            .post-avatar {
+                align-self: flex-start;
+            }
+        }
 
-            nav .nav-links {
-                flex-wrap: wrap;
+        @media (max-width: 480px) {
+            .create-post-form {
+                padding: 12px;
+            }
+            
+            .form-header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .btn-cancel, .tweet-button {
+                width: 100%;
                 justify-content: center;
-            }
-
-            .content {
-                padding: 1rem;
-            }
-
-            .form-header h1 {
-                flex-direction: column;
-                gap: 0.5rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Modern Navbar -->
-    <nav>
-        <a href="{% url 'home' %}" class="logo">
-            <i class="fas fa-handshake"></i>
-            <span></span>
-        </a>
-        <div class="nav-links">
-            <a href="{% url 'home' %}">
-                <i class="fas fa-home"></i>
-                Home
-            </a>
-            <a href="{% url 'create_post' %}" class="cta-button">
-                <i class="fas fa-plus-circle"></i>
-                Report Issue
-            </a>
-
-            {% if user.is_authenticated %}
-            <span class="nav-username">
-                <i class="fas fa-user"></i>
-                Hello, {{ user.username }}
-            </span>
-            <form method="POST" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button type="submit">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Logout
-                </button>
-            </form>
-            {% else %}
-            <a href="{% url 'login' %}">
-                <i class="fas fa-sign-in-alt"></i>
-                Login
-            </a>
-            <a href="{% url 'signup' %}">
-                <i class="fas fa-user-plus"></i>
-                Sign Up
-            </a>
-            {% endif %}
+    <div class="dashboard-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar-left">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <i class="fas fa-handshake"></i>
+                    <span>SAMADHAAN</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="{% url 'home' %}" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'create_post' %}" class="nav-link active">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Report Issue</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <button class="post-button" onclick="location.href='{% url 'create_post' %}'">
+                <i class="fas fa-plus"></i>
+                <span>Post</span>
+            </button>
+            
+            <div class="user-profile">
+                <div class="user-avatar">
+                    {% if user.is_authenticated %}
+                        {{ user.username|slice:":1"|upper }}
+                    {% else %}
+                        <i class="fas fa-user"></i>
+                    {% endif %}
+                </div>
+                <div class="user-info">
+                    <div class="user-name">
+                        {% if user.is_authenticated %}
+                            {{ user.username }}
+                        {% else %}
+                            Guest
+                        {% endif %}
+                    </div>
+                    <div class="user-handle">
+                        {% if user.is_authenticated %}
+                            @{{ user.username }}
+                        {% else %}
+                            @guest
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
-
-    <!-- Page Content -->
-    <div class="content">
-        <div class="page-container">
-            <div class="form-header">
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="feed-header">
                 <h1>
                     {% if form.instance.pk %}
-                    <i class="fas fa-edit"></i> Update Issue Report
+                    Update Issue
                     {% else %}
-                    <i class="fas fa-plus-circle"></i> Report a Community Issue
+                    Report an Issue
                     {% endif %}
                 </h1>
-                <p>
-                    {% if form.instance.pk %}
-                    Make changes to your existing issue report
-                    {% else %}
-                    Help improve our community by reporting an issue
-                    {% endif %}
-                </p>
             </div>
-
-            <form method="POST" enctype="multipart/form-data" class="post-form">
-                {% csrf_token %}
-                {{ form.non_field_errors }}
-
-                <div class="form-group">
-                    <label for="id_title">Issue Title</label>
-                    {{ form.title }}
-                    {{ form.title.errors }}
-                    <div class="help-text">Provide a clear and descriptive title for your issue</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="id_content">Issue Description</label>
-                    {{ form.content }}
-                    {{ form.content.errors }}
-                    <div class="help-text">Describe the issue in detail. Include location, impact, and any other relevant information.</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="id_photo">Upload Image (Optional)</label>
-                    {{ form.photo }}
-                    {{ form.photo.errors }}
-                    <div class="help-text">Upload a photo to help us better understand the issue</div>
-                    
-                    {% if form.instance.photo %}
-                    <div class="image-preview">
-                        <label>Current Image:</label>
-                        <img src="{{ form.instance.photo.url }}" alt="Current Issue Photo">
-                    </div>
-                    {% endif %}
-                </div>
-
-                <div class="form-group">
-                    <label>Issue Category (Optional)</label>
-                    <div class="category-tags">
-                        <div class="category-tag category-infrastructure">Infrastructure</div>
-                        <div class="category-tag category-environment">Environment</div>
-                        <div class="category-tag category-safety">Safety</div>
-                        <div class="category-tag category-other">Other</div>
-                    </div>
-                    <div class="help-text">Select a category that best describes your issue</div>
-                </div>
-
-                <div class="form-actions">
-                    <a href="{% url 'home' %}" class="btn-cancel">
-                        <i class="fas fa-arrow-left"></i>
-                        Cancel
-                    </a>
-                    <button type="submit" class="btn-submit">
+            
+            <div class="create-post-form">
+                <div class="form-header">
+                    <h2>
                         {% if form.instance.pk %}
-                        <i class="fas fa-save"></i> Update Report
+                        Update Your Issue Report
                         {% else %}
-                        <i class="fas fa-paper-plane"></i> Submit Report
+                        Report a Community Issue
                         {% endif %}
-                    </button>
+                    </h2>
+                    <p>
+                        {% if form.instance.pk %}
+                        Make changes to your existing issue report
+                        {% else %}
+                        Help improve our community by reporting an issue
+                        {% endif %}
+                    </p>
                 </div>
-            </form>
+                
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="post-composer">
+                        <div class="post-avatar">
+                            {% if user.is_authenticated %}
+                                {{ user.username|slice:":1"|upper }}
+                            {% else %}
+                                <i class="fas fa-user"></i>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="post-input-area">
+                            <div class="form-group">
+                                <label for="id_title">Issue Title</label>
+                                {{ form.title }}
+                                {{ form.title.errors }}
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="id_content">Issue Description</label>
+                                {{ form.content }}
+                                {{ form.content.errors }}
+                            </div>
+                            
+                            <div class="image-upload">
+                                <label for="id_photo">Add Image (Optional)</label>
+                                {{ form.photo }}
+                                {{ form.photo.errors }}
+                                
+                                {% if form.instance.photo %}
+                                <div class="image-preview">
+                                    <img src="{{ form.instance.photo.url }}" alt="Current issue photo">
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="post-actions">
+                                <div class="action-icons">
+                                    <label for="id_photo">
+                                        <i class="fas fa-image"></i>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <a href="{% url 'home' %}" class="btn-cancel">
+                                        <i class="fas fa-arrow-left"></i>
+                                        Cancel
+                                    </a>
+                                    <button type="submit" class="tweet-button">
+                                        {% if form.instance.pk %}
+                                        <i class="fas fa-save"></i> Update
+                                        {% else %}
+                                        <i class="fas fa-paper-plane"></i> Post
+                                        {% endif %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2023 CivicConnect. Building stronger communities together.</p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Contact</a>
-                <a href="#">About</a>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        // Simple image preview functionality
+        // Image preview functionality
         document.addEventListener('DOMContentLoaded', function() {
             const photoInput = document.getElementById('id_photo');
             if (photoInput) {
@@ -607,15 +653,11 @@
                 });
             }
             
-            // Category tag selection
-            const categoryTags = document.querySelectorAll('.category-tag');
-            categoryTags.forEach(tag => {
-                tag.addEventListener('click', function() {
-                    categoryTags.forEach(t => t.style.opacity = '0.7');
-                    this.style.opacity = '1';
-                    this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-                });
-            });
+            // Character counter for text areas (optional enhancement)
+            const contentTextarea = document.getElementById('id_content');
+            if (contentTextarea) {
+                // You can add a character counter here if needed
+            }
         });
     </script>
 </body>
