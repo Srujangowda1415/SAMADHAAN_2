@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(-45deg, #e0f7fa, #f3e5f5, #e8f5e8, #fff3e0);
+            background: linear-gradient(-45deg, #e8f5e8, #f1f8f1, #fffbf0, #f9f5e9);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
             height: 100vh;
@@ -46,31 +46,34 @@
 
         .logo i {
             font-size: 4rem;
-            color: #4f46e5;
+            color: #d4b85a; /* Golden accent */
             margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .logo h1 {
             font-size: 2.5rem;
-            color: #1e293b;
+            color: #2d4a2d; /* Deep green */
             font-weight: 700;
             letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .language-text {
             font-size: 3.5rem;
             font-weight: 700;
-            color: #0f172a;
+            color: #2d4a2d; /* Deep green */
             margin-bottom: 1.5rem;
             min-height: 120px;
             display: flex;
             justify-content: center;
             align-items: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .language-name {
             font-size: 1.2rem;
-            color: #64748b;
+            color: #5a7a5a; /* Medium green */
             font-weight: 500;
             margin-top: 0.5rem;
             min-height: 30px;
@@ -79,7 +82,7 @@
         .progress-bar {
             width: 300px;
             height: 6px;
-            background: #e2e8f0;
+            background: #e8e0c9; /* Light golden */
             border-radius: 10px;
             margin: 2rem auto;
             overflow: hidden;
@@ -88,10 +91,10 @@
 
         .progress {
             height: 100%;
-            background: #4f46e5;
+            background: linear-gradient(90deg, #d4b85a, #3a6b3a); /* Golden to green gradient */
             width: 0%;
             border-radius: 10px;
-            animation: progressFill 15s linear forwards;
+            animation: progressFill 6s linear forwards;
         }
 
         .floating-elements {
@@ -105,17 +108,20 @@
 
         .floating-element {
             position: absolute;
-            background: rgba(255, 255, 255, 0.7);
             border-radius: 50%;
             animation: float 15s infinite linear;
+            background-size: cover;
+            background-position: center;
         }
 
+        /* Jharkhand cultural elements */
         .element-1 {
             width: 80px;
             height: 80px;
             top: 10%;
             left: 10%;
             animation-delay: 0s;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23d4b85a" stroke="%232d4a2d" stroke-width="2"/><path d="M30,50 Q50,30 70,50 Q50,70 30,50" fill="%233a6b3a"/></svg>');
         }
 
         .element-2 {
@@ -124,6 +130,7 @@
             top: 70%;
             left: 80%;
             animation-delay: -5s;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 70,40 95,45 75,65 80,90 50,75 20,90 25,65 5,45 30,40" fill="%23d4b85a" stroke="%232d4a2d" stroke-width="2"/></svg>');
         }
 
         .element-3 {
@@ -132,6 +139,7 @@
             top: 20%;
             left: 85%;
             animation-delay: -10s;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" rx="10" fill="%233a6b3a" stroke="%23d4b85a" stroke-width="2"/><circle cx="50" cy="50" r="15" fill="%23d4b85a"/></svg>');
         }
 
         .element-4 {
@@ -140,6 +148,22 @@
             top: 80%;
             left: 15%;
             animation-delay: -7s;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,50 Q50,20 80,50 Q50,80 20,50" fill="%23d4b85a" stroke="%232d4a2d" stroke-width="2"/><circle cx="50" cy="50" r="10" fill="%233a6b3a"/></svg>');
+        }
+
+        /* Jharkhand pattern background */
+        .jharkhand-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(212, 184, 90, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 80% 70%, rgba(58, 107, 58, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 40% 80%, rgba(212, 184, 90, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 60% 20%, rgba(58, 107, 58, 0.1) 2px, transparent 2px);
+            background-size: 100px 100px;
+            opacity: 0.3;
+            z-index: 0;
         }
 
         @keyframes float {
@@ -178,7 +202,7 @@
 
         .typing-effect {
             overflow: hidden;
-            border-right: 3px solid #4f46e5;
+            border-right: 3px solid #d4b85a; /* Golden accent */
             white-space: nowrap;
             margin: 0 auto;
             animation: typing 1.5s steps(20, end), blink 0.75s step-end infinite;
@@ -225,6 +249,8 @@
     </style>
 </head>
 <body>
+    <div class="jharkhand-pattern"></div>
+    
     <div class="floating-elements">
         <div class="floating-element element-1"></div>
         <div class="floating-element element-2"></div>
@@ -253,18 +279,13 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script>
-        // Languages data
+        // Languages data - focusing on Jharkhand regional languages
         const languages = [
             { text: "नमस्ते नागरिक", name: "Hindi" },
-            { text: "ನಮಸ್ತೆ ನಾಗರಿಕ", name: "Kannada" },
-            { text: "வணக்கம் நகரவாசி", name: "Tamil" },
-            { text: "నమస్తే నగరిక", name: "Telugu" },
-            { text: "নমস্কার নাগরিক", name: "Bengali" },
-            { text: "નમસ્તે નાગરિક", name: "Gujarati" },
+            { text: "जोहार नागरिक", name: "Nagpuri (Jharkhandi)" },
+            { text: "नमस्कार नागरिक", name: "Santhali" },
             { text: "Namaste Nagrik", name: "English" },
-            { text: "ਨਮਸਤੇ ਨਾਗਰਿਕ", name: "Punjabi" },
-            { text: "नमस्कार नागरिक", name: "Marathi" },
-            { text: "ନମସ୍ତେ ନାଗରିକ", name: "Odia" }
+            { text: "जय जोहार", name: "Jharkhand Greeting" }
         ];
 
         let currentIndex = 0;
@@ -283,7 +304,7 @@
             
             // Reset and apply typing effect
             languageTextElement.innerHTML = '';
-            languageTextElement.style.borderRight = '3px solid #4f46e5';
+            languageTextElement.style.borderRight = '3px solid #d4b85a';
             languageTextElement.classList.add('typing-effect');
             
             // Type out the text character by character
@@ -304,7 +325,7 @@
                     setTimeout(() => {
                         currentIndex++;
                         displayLanguage();
-                    }, 1500); // Wait 1.5 seconds before showing next language
+                    }, 800); // Wait 0.8 seconds before showing next language
                 }
             }, 100); // Typing speed
         }
