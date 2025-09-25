@@ -14,5 +14,5 @@ class RegisterForm(UserCreationForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'content', 'photo']
+        fields = ['title', 'content', 'photo','latitude', 'longitude', 'address']
 
